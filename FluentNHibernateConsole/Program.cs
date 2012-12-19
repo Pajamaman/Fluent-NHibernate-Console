@@ -84,8 +84,7 @@ namespace FluentNHibernateConsole
         {
             return Fluently.Configure()
                 .Database( CreateDbConfig )
-                .Mappings( m => m
-                    .AutoMappings.Add( CreateMappings() ) )
+                .Mappings( m => m.AutoMappings.Add( CreateMappings() ) )
                 .ExposeConfiguration( DropCreateSchema )
                 .BuildSessionFactory();
         }
@@ -106,10 +105,8 @@ namespace FluentNHibernateConsole
         {
             return AutoMap
                 .Assembly( System.Reflection.Assembly.GetCallingAssembly() )
-                .Where( t => t
-                    .Namespace == "FluentNHibernateConsole.Entities" )
-                .Conventions.Setup( c => c
-                    .Add( DefaultCascade.SaveUpdate() ) );
+                .Where( t => t.Namespace == "FluentNHibernateConsole.Entities" )
+                .Conventions.Setup( c => c.Add( DefaultCascade.SaveUpdate() ) );
         }
 
         // Drops and creates the database schema
